@@ -9,9 +9,22 @@ class UserModel {
 class UserData
 {
   final String uid;
-  final String plantName;
-  final String plantType;
+  final String name;
+  final String bio;
+  final int waterTime;
+  final String email;
+
+  UserData({this.uid, this.bio, this.name, this.waterTime, this.email});
+}
+
+class UserInfo {
+  final String name;
+  final String bio;
+  final String email;
+  final String uid;
   final int waterTime;
 
-  UserData({this.uid, this.plantType, this.plantName, this.waterTime});
+  UserInfo({this.name, this.bio, this.waterTime, this.email, this.uid});
+
+
 }

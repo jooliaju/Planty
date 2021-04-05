@@ -15,8 +15,8 @@ class _AddPlantState extends State<AddPlant> {
   final List<int> days = [0 ,1 ,2 ,3 ,4 ,5 ,6 ,7];
 
   //form values
-  String _plantName;
-  String _plantType;
+  String _name;
+  String _bio;
   int _waterTime; //in days
 
   @override
@@ -38,38 +38,44 @@ class _AddPlantState extends State<AddPlant> {
                 body: Column(
                   children: <Widget>[
                     TextFormField(
-                      initialValue: userData.plantName,
+                      initialValue: userData.name,
                       decoration: InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Plant Name'),
                       validator: (val) =>
                           val.isEmpty ? 'Please enter a plant name' : null,
-                      onChanged: (val) => setState(() => _plantName = val),
+                      onChanged: (val) => setState(() => _name = val),
                     ),
                     TextFormField(
-                      initialValue: userData.plantType,
+                      initialValue: userData.bio,
                       decoration: InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Plant Type'),
                       validator: (val) =>
                           val.isEmpty ? 'Please enter a plant breed' : null,
-                      onChanged: (val) => setState(() => _plantType = val),
+                      onChanged: (val) => setState(() => _bio = val),
                     ),
                     DropdownButton<int>(
                       value: _waterTime ?? userData.waterTime,
                       items: days.map((day) {
                         return DropdownMenuItem(
-                          value: day ?? 3,
+                          value: day ?? 0,
                           child: Text('$day days'),
                         );
                       }).toList(),
                       onChanged: (val) => setState(() => _waterTime = val ),
                     ),
                     RaisedButton(
-                      onPressed: () {
-                        print(_plantType);
-                        print(_plantName);
+                      onPressed: () async {
+                        print(_bio);
+                        print(_name);
                         print(_waterTime);
+
+
+                        if(_formKey.currentState.validate()){
+                          await DatabaseService(uid: user.uid).updateUserData(_name ?? userData.name, _bio ?? userData.bio, _waterTime ?? userData.waterTime, null);
+                        }
+
 
                         Navigator.pop(context);
                       },

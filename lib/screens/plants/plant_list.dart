@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:planty_app/models/plant.dart';
-import 'package:planty_app/screens/home/plant_tile.dart';
+import 'package:planty_app/models/plant_model.dart';
+import 'package:planty_app/models/user.dart';
+import 'package:planty_app/screens/home/user_tile.dart';
+import 'package:planty_app/screens/plants/plant_tile.dart';
 import 'package:provider/provider.dart';
 
 class PlantList extends StatefulWidget {
@@ -13,15 +15,15 @@ class _PlantListState extends State<PlantList> {
   @override
   Widget build(BuildContext context) {
 
-    final plants = Provider.of<List<Plant>>(context);
-    print(plants);
+    final users = Provider.of<List<UserInfo>>(context) ?? [];
+    print(users);
 
     return Expanded(
       child: ListView.builder(
-        itemCount: plants.length,
+        itemCount: users.length,
         itemBuilder: (context,index){
           return PlantTile(
-            plant: plants[index]);
+              plant: users[index]);
         },
       ),
     );

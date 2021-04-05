@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:planty_app/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:planty_app/screens/details/details_page.dart';
 import 'package:planty_app/screens/idCam/plant_id_service.dart';
 
 

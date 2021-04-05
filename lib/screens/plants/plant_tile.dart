@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:planty_app/models/plant.dart';
+import 'package:planty_app/models/plant_model.dart';
+import 'package:planty_app/models/user.dart';
 
 class PlantTile extends StatelessWidget {
-  final Plant plant;
+  final UserInfo plant;
 
   PlantTile({this.plant});
 
@@ -14,11 +15,11 @@ class PlantTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
         child: ListTile(
           leading: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.green
+              radius: 30,
+              backgroundColor: Colors.green
           ),
-          title: Text(plant.plantName),
-          subtitle: Text("This is a ${plant.plantType}"),
+          title: Text(plant.name),
+          subtitle: Text(plant.bio),
         ),
       ),
 

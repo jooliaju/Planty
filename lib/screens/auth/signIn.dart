@@ -5,7 +5,6 @@ import "package:firebase_core/firebase_core.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:planty_app/shared/loading.dart';
 
-import '../details/details_page.dart';
 
 
 class SignInPage extends StatefulWidget {
@@ -105,10 +104,6 @@ class _SignInPageState extends State<SignInPage> {
             }
 
           }
-
-          ///navigate to homepage here
-          // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => DetailsScreen()));
-
 
 
         },
