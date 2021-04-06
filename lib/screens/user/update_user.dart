@@ -5,14 +5,14 @@ import 'package:planty_app/services/database.dart';
 import 'package:planty_app/shared/loading.dart';
 import 'package:provider/provider.dart';
 
-class AddPlant extends StatefulWidget {
+class UpdateUser extends StatefulWidget {
   @override
-  _AddPlantState createState() => _AddPlantState();
+  _UpdateUserState createState() => _UpdateUserState();
 }
 
-class _AddPlantState extends State<AddPlant> {
+class _UpdateUserState extends State<UpdateUser> {
   final _formKey = GlobalKey<FormState>();
-  final List<int> days = [0 ,1 ,2 ,3 ,4 ,5 ,6 ,7];
+  final List<int> days = [0, 1, 2, 3, 4, 5, 6, 7];
 
   //form values
   String _name;
@@ -28,7 +28,6 @@ class _AddPlantState extends State<AddPlant> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
-            print("lol1 ${snapshot.hasData}");
             return Form(
               key: _formKey,
               child: Scaffold(
@@ -63,7 +62,7 @@ class _AddPlantState extends State<AddPlant> {
                           child: Text('$day days'),
                         );
                       }).toList(),
-                      onChanged: (val) => setState(() => _waterTime = val ),
+                      onChanged: (val) => setState(() => _waterTime = val),
                     ),
                     RaisedButton(
                       onPressed: () async {
@@ -71,11 +70,13 @@ class _AddPlantState extends State<AddPlant> {
                         print(_name);
                         print(_waterTime);
 
-
-                        if(_formKey.currentState.validate()){
-                          await DatabaseService(uid: user.uid).updateUserData(_name ?? userData.name, _bio ?? userData.bio, _waterTime ?? userData.waterTime, null);
+                        if (_formKey.currentState.validate()) {
+                          await DatabaseService(uid: user.uid).updateUserData(
+                              _name ?? userData.name,
+                              _bio ?? userData.bio,
+                              _waterTime ?? userData.waterTime,
+                              null);
                         }
-
 
                         Navigator.pop(context);
                       },
@@ -85,12 +86,7 @@ class _AddPlantState extends State<AddPlant> {
                 ),
               ),
             );
-
-
-          }
-
-          else {
-
+          } else {
             return Loading();
           }
         });

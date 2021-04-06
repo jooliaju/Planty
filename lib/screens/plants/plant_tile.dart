@@ -3,7 +3,7 @@ import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/models/user.dart';
 
 class PlantTile extends StatelessWidget {
-  final UserInfo plant;
+  final Plant plant;
 
   PlantTile({this.plant});
 
@@ -19,7 +19,6 @@ class PlantTile extends StatelessWidget {
               backgroundColor: Colors.green
           ),
           title: Text(plant.name),
-          subtitle: Text(plant.bio),
         ),
       ),
 
