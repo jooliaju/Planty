@@ -28,7 +28,10 @@ class DatabaseService {
   }
 
   Future updatePlant(String name) async {
-    return await plantCollection.doc(uid).set({'name': name, 'uid': uid});
+    return await plantCollection.doc(uid).set({
+      'name': name,
+      'uid': uid
+    });
   }
 
   Future addPlant(String name, String bio, String type, int waterTime) async {

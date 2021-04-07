@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:planty_app/models/user.dart';
 import 'package:planty_app/screens/auth/signIn.dart';
 import 'package:planty_app/screens/home/home.dart';
+import 'package:planty_app/screens/home/home_new.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {
@@ -15,7 +16,12 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return SignInPage();
     } else {
+
+      ///temp!
+
+      // return HomeScreenNew();
       return HomeScreen();
+
     }
   }
 }
