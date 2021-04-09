@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/models/user.dart';
-import 'package:planty_app/screens/home/user_tile.dart';
+import 'package:planty_app/old/user_tile.dart';
 import 'package:provider/provider.dart';
 
 class UserList extends StatefulWidget {

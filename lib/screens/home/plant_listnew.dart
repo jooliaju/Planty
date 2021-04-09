@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:planty_app/models/plant_model.dart';
 
-import 'package:planty_app/screens/plants/plant_tile.dart';
-import 'package:planty_app/screens/plants/plant_tilenew.dart';
+import 'package:planty_app/old/plant_tile.dart';
+import 'package:planty_app/screens/home/plant_tilenew.dart';
 import 'package:provider/provider.dart';
 
 class PlantListNew extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:planty_app/models/plant_model.dart';
 
-import 'package:planty_app/screens/plants/plant_tile.dart';
+import 'package:planty_app/old/plant_tile.dart';
 import 'package:provider/provider.dart';
 
 class PlantList extends StatefulWidget {

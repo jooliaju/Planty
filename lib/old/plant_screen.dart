@@ -18,8 +18,8 @@
 import "package:flutter/material.dart";
 import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/models/user.dart';
-import 'package:planty_app/screens/plants/add_plant.dart';
-import 'package:planty_app/screens/plants/plant_list.dart';
+import 'package:planty_app/old/add_plant.dart';
+import 'package:planty_app/old/plant_list.dart';
 import 'package:planty_app/services/auth.dart';
 import 'package:planty_app/services/database.dart';
 import 'package:provider/provider.dart';

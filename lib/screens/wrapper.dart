@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planty_app/models/user.dart';
 import 'package:planty_app/screens/auth/signIn.dart';
-import 'package:planty_app/screens/home/home.dart';
+import 'package:planty_app/old/home.dart';
 import 'package:planty_app/screens/home/home_new.dart';
 import 'package:provider/provider.dart';
 

@@ -4,13 +4,14 @@ import 'package:planty_app/constants.dart';
 import 'package:planty_app/models/cards_model.dart';
 import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/models/user.dart';
-import 'package:planty_app/screens/plants/plant_listnew.dart';
+import 'package:planty_app/screens/add_plant/add_plant.dart';
+import 'package:planty_app/screens/home/plant_listnew.dart';
 import 'package:planty_app/screens/user/update_user.dart';
-import 'package:planty_app/screens/plants/plant_screen.dart';
+import 'package:planty_app/old/plant_screen.dart';
 import 'package:planty_app/services/auth.dart';
 import 'package:planty_app/services/database.dart';
 import 'package:provider/provider.dart';
-import 'user_list.dart';
+import '../../old/user_list.dart';
 
 class HomeScreenNew extends StatefulWidget {
   @override
@@ -166,6 +167,18 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
 
                     );
                   },
+                ),
+                FlatButton(
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddPlant()),
+                      );
+                    },
+                    color: kBlue,
+
+                child: Text("go to add plant screen")
                 )
 
               ],
