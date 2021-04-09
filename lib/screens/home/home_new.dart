@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:hexcolor/hexcolor.dart';
 import 'package:planty_app/constants.dart';
 import 'package:planty_app/models/cards_model.dart';
 import 'package:planty_app/models/user.dart';
@@ -144,14 +145,14 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.only( right: 16),
-                  itemCount: cards.length,
+                  itemCount: 3,
                   itemBuilder: (context, index){
                     return Container(
                       width: 200,
                       margin: EdgeInsets.only(right:10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(28),
-                        color: Color(cards[index].cardBackground),
+                        color: Colors.blue,
                       ),
 
                     );

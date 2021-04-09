@@ -6,7 +6,7 @@ class CardModel {
   String cardNumber;
   String cardExpired;
   String cardType;
-  int cardBackground;
+  String cardBackground;
   String cardElementTop;
   String cardElementBottom;
 
