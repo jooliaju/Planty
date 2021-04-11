@@ -3,6 +3,7 @@ import 'package:planty_app/models/plant_model.dart';
 
 import 'package:planty_app/old/plant_tile.dart';
 import 'package:planty_app/screens/home/plant_tilenew.dart';
+import 'package:planty_app/shared/constants.dart';
 import 'package:provider/provider.dart';
 
 class PlantListNew extends StatefulWidget {
@@ -11,21 +12,19 @@ class PlantListNew extends StatefulWidget {
 }
 
 class _PlantListNewState extends State<PlantListNew> {
-
-
   @override
   Widget build(BuildContext context) {
-
     final plants = Provider.of<List<Plant>>(context) ?? [];
     print(plants.length);
 
     return Container(
-      height: 200,
+      height: 270,
       child: ListView.builder(
+        padding: EdgeInsets.only(right: kDefaultPadding),
         scrollDirection: Axis.horizontal,
         itemCount: plants.length,
-        itemBuilder: (context,index){
-          return PlantTileNew( plant: plants[index]);
+        itemBuilder: (context, index) {
+          return PlantTileNew(plant: plants[index]);
         },
       ),
     );

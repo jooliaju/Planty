@@ -28,13 +28,11 @@ class DatabaseService {
   }
 
   Future updatePlant(String name) async {
-    return await plantCollection.doc(uid).set({
-      'name': name,
-      'uid': uid
-    });
+    return await plantCollection.doc(uid).set({'name': name, 'uid': uid});
   }
 
-  Future addPlant(String name, String bio, String type, int waterTime, String imageUrl) async {
+  Future addPlant(String name, String bio, String type, int waterTime,
+      String imageUrl) async {
     return await plantCollection.add({
       'name': name,
       'type': type,
@@ -50,6 +48,10 @@ class DatabaseService {
     return snapshot.docs.map((doc) {
       return Plant(
         name: doc.data()['name'] ?? "",
+        bio: doc.data()['bio'] ?? "",
+        type: doc.data()['type'] ?? "",
+        waterTime: doc.data()['waterTime'] ?? 0,
+        imageUrl: doc.data()['imageUrl'] ?? "",
       );
     }).toList();
   }

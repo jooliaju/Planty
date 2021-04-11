@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:planty_app/models/user.dart';
 import 'package:planty_app/services/database.dart';
 import 'package:planty_app/shared/constants.dart';
+import 'package:planty_app/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
@@ -30,11 +31,8 @@ class _AddPlantState extends State<AddPlant> {
   File _image;
   final picker = ImagePicker();
 
-
-
   TextStyle style =
       TextStyle(fontSize: 20, color: kGreyBlue, fontWeight: FontWeight.bold);
-
 
   //get photo from gallery
   Future getImage() async {
@@ -51,7 +49,6 @@ class _AddPlantState extends State<AddPlant> {
     });
   }
 
-
   Future takeImage() async {
     final pickedFile = await picker.getImage(
         source: ImageSource
@@ -66,14 +63,11 @@ class _AddPlantState extends State<AddPlant> {
     });
   }
 
-
-
   uploadImage(File _image) async {
     String imageName = path.basename(_image.path);
     final _storage = FirebaseStorage.instance;
-    var snapshot = await _storage.ref()
-        .child('folderName/${imageName}')
-        .putFile(_image);
+    var snapshot =
+        await _storage.ref().child('folderName/${imageName}').putFile(_image);
     var downloadUrl = await snapshot.ref.getDownloadURL();
     print(downloadUrl);
     setState(() {
@@ -108,31 +102,35 @@ class _AddPlantState extends State<AddPlant> {
                   //show this image if there is no image selected
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: _image == null? Image(
-                        width: size.width,
-                        image: AssetImage("assets/images/add_plant_bg.png"),
-                        fit: BoxFit.cover): Image.file(_image, fit: BoxFit.cover),
+                    child: _image == null
+                        ? Image(
+                            width: size.width,
+                            image: AssetImage("assets/images/add_plant_bg.png"),
+                            fit: BoxFit.cover)
+                        : Image.file(_image, fit: BoxFit.cover),
                   ),
                 ),
                 Positioned(
                   top: 130,
                   left: size.width * .3,
-                  child: _image == null? Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          "Add an image of \nyour plant!",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        SizedBox(height: size.width * 0.04),
-                        Image.asset(
-                          'assets/icons/add_image.png',
-                          scale: 3.5,
+                  child: _image == null
+                      ? Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                "Add an image of \nyour plant!",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              SizedBox(height: size.width * 0.04),
+                              Image.asset(
+                                'assets/icons/add_image.png',
+                                scale: 3.5,
+                              )
+                            ],
+                          ),
                         )
-                      ],
-                    ),
-                  ): Container(),
+                      : Container(),
                 )
               ],
             ),
@@ -144,9 +142,14 @@ class _AddPlantState extends State<AddPlant> {
               child: Column(children: <Widget>[
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Image.asset(
-                      "assets/icons/back_arrow_1.png",
-                      scale: 3,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Image.asset(
+                        "assets/icons/back_arrow_1.png",
+                        scale: 3,
+                      ),
                     )),
                 SizedBox(height: size.width * 0.09),
                 Row(
@@ -175,7 +178,6 @@ class _AddPlantState extends State<AddPlant> {
                 SizedBox(height: size.width * 0.03),
                 TextFormField(
                   onChanged: (val) => setState(() => _type = val),
-
                   decoration: InputDecoration(
                     fillColor: kBackground,
                     filled: true,
@@ -208,7 +210,6 @@ class _AddPlantState extends State<AddPlant> {
                 SizedBox(height: size.width * 0.03),
                 TextFormField(
                   onChanged: (val) => setState(() => _name = val),
-
                   decoration: InputDecoration(
                     fillColor: kBackground,
                     filled: true,
@@ -258,13 +259,13 @@ class _AddPlantState extends State<AddPlant> {
                   minWidth: 150,
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20.0)),
-                  onPressed: () async{
-
+                  onPressed: () async {
                     await uploadImage(_image);
                     if (_formKey.currentState.validate()) {
                       print("this is the image url: ");
                       await DatabaseService(uid: user.uid)
-                          .addPlant(_name,_bio,_type, _waterTime, imageUrl);
+                          .addPlant(_name, _bio, _type, _waterTime, imageUrl);
+                      Loading();
                     }
 
                     Navigator.pop(context);
