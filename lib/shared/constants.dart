@@ -1,4 +1,3 @@
-import "package:flutter/material.dart";
 import "package:hexcolor/hexcolor.dart";
 
 //colors used in the app
@@ -8,5 +7,6 @@ HexColor kYellow = HexColor("#F2E1AE");
 HexColor kBlue = HexColor("#B9CEFA");
 HexColor kBrown = HexColor("#DC6D40");
 HexColor kGreyBlue = HexColor("#566C71");
+HexColor kGreen = HexColor("2C6975");
 
 const double kDefaultPadding = 20.0;

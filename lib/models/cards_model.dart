@@ -1,5 +1,4 @@
-import 'package:hexcolor/hexcolor.dart';
-import 'package:planty_app/constants.dart';
+import 'package:planty_app/shared/constants.dart';
 
 class CardModel {
   String user;
@@ -14,17 +13,19 @@ class CardModel {
       this.cardBackground, this.cardElementTop, this.cardElementBottom);
 }
 
-List<CardModel> cards = cardData.map(
+List<CardModel> cards = cardData
+    .map(
       (item) => CardModel(
-    item['user'],
-    item['cardNumber'],
-    item['cardExpired'],
-    item['cardType'],
-    item['cardBackground'],
-    item['cardElementTop'],
-    item['cardElementBottom'],
-  ),
-).toList();
+        item['user'],
+        item['cardNumber'],
+        item['cardExpired'],
+        item['cardType'],
+        item['cardBackground'],
+        item['cardElementTop'],
+        item['cardElementBottom'],
+      ),
+    )
+    .toList();
 
 var cardData = [
   {

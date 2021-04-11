@@ -12,7 +12,7 @@ class AddPlant extends StatefulWidget {
 
 class _AddPlantState extends State<AddPlant> {
   final _formKey = GlobalKey<FormState>();
-  final List<int> days = [0 ,1 ,2 ,3 ,4 ,5 ,6 ,7];
+  final List<int> days = [0, 1, 2, 3, 4, 5, 6, 7];
 
   //form values
   String _name;
@@ -27,44 +27,34 @@ class _AddPlantState extends State<AddPlant> {
     return Form(
       key: _formKey,
       child: Scaffold(
-                  appBar: AppBar(
-                    title: Text("temp form"),
-                  ),
-                  body: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        decoration: InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Plant Name'),
-                        validator: (val) =>
-                        val.isEmpty ? 'Please enter a plant name' : null,
-                        onChanged: (val) => setState(() => _name = val),
-                      ),
+        appBar: AppBar(
+          title: Text("temp form"),
+        ),
+        body: Column(
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(
+                  border: UnderlineInputBorder(), labelText: 'Plant Name'),
+              validator: (val) =>
+                  val.isEmpty ? 'Please enter a plant name' : null,
+              onChanged: (val) => setState(() => _name = val),
+            ),
+            RaisedButton(
+              onPressed: () async {
+                print(_name);
 
-                      RaisedButton(
-                        onPressed: () async {
-                          print(_name);
+                // if (_formKey.currentState.validate()) {
+                //   await DatabaseService(uid: user.uid)
+                //       .addPlant(_name, _type, _bio, _waterTime, imag);
+                // }
 
-
-                          if(_formKey.currentState.validate()){
-                            await DatabaseService(uid: user.uid).addPlant(_name, _type, _bio, _waterTime);
-                          }
-
-
-                          Navigator.pop(context);
-                        },
-                        child: Text("update"),
-                      )
-                    ],
-                  ),
-                ),
+                Navigator.pop(context);
+              },
+              child: Text("update"),
+            )
+          ],
+        ),
+      ),
     );
-
-
-
-          }
-
-
-
   }
-
+}

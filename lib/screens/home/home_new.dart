@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:hexcolor/hexcolor.dart';
-import 'package:planty_app/constants.dart';
+import 'package:planty_app/shared/constants.dart';
 import 'package:planty_app/models/cards_model.dart';
 import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/models/user.dart';
@@ -34,115 +34,117 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
             child: Column(
               children: [
                 //Custom AppBar
-                Stack(
-                  children: <Widget>[
-
-                    Container(
+                Stack(children: <Widget>[
+                  Container(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top:20),
-                          child: Column(
-                              children: <Widget>[
-                              Padding(
-                              padding: const EdgeInsets.all(0),
-                              child: Image.asset("assets/icons/side_bar.png", scale: 2.5,),
-                            ),
-
-                            ]
-                          ),
-                        ),
-                        Stack(
-                          alignment: Alignment.topRight,
-                          children: <Widget>[
-                            Container(
-                              child: Image.asset("assets/images/profile_pic.png", scale:3.5),
-                            ),
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Column(children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(35),
-                              child: Container(
-                              height: 60,
-                              width: 60,
-                              child: GestureDetector(
-                                onTap: (){
-                                  print("you need to add a profile page");
-                                },
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.white ,
-                                  child: Image.asset("assets/images/human.png", fit: BoxFit.contain),
-                                ),
-                              )
-
-                          ),
-                            ),]
+                              padding: const EdgeInsets.all(0),
+                              child: Image.asset(
+                                "assets/icons/side_bar.png",
+                                scale: 2.5,
+                              ),
+                            ),
+                          ]),
                         ),
-
-
+                        Stack(alignment: Alignment.topRight, children: <Widget>[
+                          Container(
+                            child: Image.asset("assets/images/profile_pic.png",
+                                scale: 3.5),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(35),
+                            child: Container(
+                                height: 60,
+                                width: 60,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    print("you need to add a profile page");
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    child: Image.asset(
+                                        "assets/images/human.png",
+                                        fit: BoxFit.contain),
+                                  ),
+                                )),
+                          ),
+                        ]),
                       ],
                     ),
                   ),
-                    Container(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 110),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            RichText(text: TextSpan(
-                                text: "Hey ",
-                                style: TextStyle(
-                                    color: kDefaultText,
-                                    fontSize: 26
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: "Malakai",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold
-                                      )
-                                  )
-                                ]
-
-                            )),
-                            SizedBox(
-                              height: size.height*0.01,
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 110),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                              text: TextSpan(
+                                  text: "Hey ",
+                                  style: TextStyle(
+                                      color: kDefaultText, fontSize: 26),
+                                  children: <TextSpan>[
+                                TextSpan(
+                                    text: "Malakai",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold))
+                              ])),
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Text(
+                            "Let’s keep your plants healthy!",
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
-                            Text(
-                              "Let’s keep your plants healthy!",
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ),
-                  ]
-                ),
-
+                  ),
+                ]),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Your Lovely Plants", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: kGreyBlue)),
+                    Text("Your Lovely Plants",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: kGreyBlue)),
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: Text("See All", style: TextStyle(color: kGreyBlue, fontSize: 16 )),
+                      child: Text("See All",
+                          style: TextStyle(color: kGreyBlue, fontSize: 16)),
                     )
                   ],
                 ),
-                SizedBox(height: size.height*0.02,),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
                 PlantListNew(),
 
-                SizedBox(height: size.height*0.02,),
-                Text("Tasks Today", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: kGreyBlue)),
-                SizedBox(height: size.height*0.02,),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Text("Tasks Today",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: kGreyBlue)),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
 
                 ListView.builder(
                   scrollDirection: Axis.vertical,
-
                   itemCount: 2,
                   padding: EdgeInsets.only(right: 20),
                   shrinkWrap: true,
@@ -150,8 +152,8 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                     return Container(
                       height: 70,
                       margin: EdgeInsets.only(bottom: 20),
-                      padding:
-                      EdgeInsets.only(left: 20, top: 12, bottom: 12, right: 20),
+                      padding: EdgeInsets.only(
+                          left: 20, top: 12, bottom: 12, right: 20),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
@@ -164,50 +166,21 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                           )
                         ],
                       ),
-
                     );
                   },
                 ),
                 FlatButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => AddPlant()),
+                        MaterialPageRoute(builder: (context) => AddPlant()),
                       );
                     },
-                    color: kBlue,
-
-                child: Text("go to add plant screen")
-                )
-
+                    color: kGreen,
+                    child: Text("go to add plant screen"))
               ],
             ),
           )),
     );
   }
-
-
-  ///add a stream for database collection 'plants'
-  // Container plantListNew() {
-  //   final plants = Provider.of<List<Plant>>(context) ?? [];
-  //   return Container(
-  //             height: 250,
-  //             child: ListView.builder(
-  //                 scrollDirection: Axis.horizontal,
-  //                 padding: EdgeInsets.only( right: 16),
-  //                 itemCount: plants.length,
-  //                 itemBuilder: (context, index){
-  //                   return Container(
-  //                     width: 200,
-  //                     margin: EdgeInsets.only(right:10),
-  //                     decoration: BoxDecoration(
-  //                       borderRadius: BorderRadius.circular(28),
-  //                       color: Colors.red,
-  //                     ),
-  //
-  //                   );
-  //                 }),
-  //           );
-  // }
 }

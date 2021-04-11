@@ -34,12 +34,13 @@ class DatabaseService {
     });
   }
 
-  Future addPlant(String name, String bio, String type, int waterTime) async {
+  Future addPlant(String name, String bio, String type, int waterTime, String imageUrl) async {
     return await plantCollection.add({
       'name': name,
       'type': type,
       'bio': bio,
       'waterTime': waterTime,
+      'imageUrl': imageUrl,
       'uid': uid
     });
   }
