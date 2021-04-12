@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/screens/all_plants/all_plants_tile.dart';
+import 'package:planty_app/screens/plant_profile/plant_profile.dart';
 import 'package:provider/provider.dart';
 
 class AllPlantList extends StatefulWidget {
@@ -14,15 +15,25 @@ class _AllPlantListState extends State<AllPlantList> {
     final plants = Provider.of<List<Plant>>(context) ?? [];
     print(plants.length);
 
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: 3,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return AllPlantTile(
-          plant: plants[index],
-        );
-      },
+    return Expanded(
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: plants.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PlantProfile()),
+              );
+            },
+            child: AllPlantTile(
+              plant: plants[index],
+            ),
+          );
+        },
+      ),
     );
   }
 }

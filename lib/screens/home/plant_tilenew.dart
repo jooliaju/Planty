@@ -45,21 +45,25 @@ class PlantTileNew extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            plant.name,
-                            style: TextStyle(fontSize: 14, color: kDefaultText),
-                          ),
-                          Text(
-                            plant.type,
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: kGreen,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ],
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              plant.name,
+                              overflow: TextOverflow.ellipsis,
+                              style:
+                                  TextStyle(fontSize: 14, color: kDefaultText),
+                            ),
+                            Text(
+                              plant.type,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: kGreen,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
                       ),
                       Text("${plant.waterTime} days",
                           style: TextStyle(

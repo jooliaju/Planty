@@ -162,44 +162,37 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                   height: size.height * 0.02,
                 ),
 
-                ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: 2,
-                  padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 70,
-                      margin: EdgeInsets.only(bottom: kDefaultPadding),
-                      padding: EdgeInsets.only(
-                          left: kDefaultPadding,
-                          top: 12,
-                          bottom: 12,
-                          right: kDefaultPadding),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey[200],
-                            blurRadius: 10,
-                            spreadRadius: 5,
-                            offset: Offset(5, 5),
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                FlatButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AddPlant()),
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: 5,
+                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 70,
+                        margin: EdgeInsets.only(bottom: kDefaultPadding),
+                        padding: EdgeInsets.only(
+                            left: kDefaultPadding,
+                            top: 12,
+                            bottom: 12,
+                            right: kDefaultPadding),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey[200],
+                              blurRadius: 10,
+                              spreadRadius: 5,
+                              offset: Offset(5, 5),
+                            )
+                          ],
+                        ),
                       );
                     },
-                    color: kGreen,
-                    child: Text("go to add plant screen"))
+                  ),
+                ),
               ],
             ),
           )),
