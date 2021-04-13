@@ -147,6 +147,12 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                 SizedBox(
                   height: size.height * 0.02,
                 ),
+                FlatButton(
+                  onPressed: () {
+                    _auth.signOut();
+                  },
+                  child: Text("sign out temp"),
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(

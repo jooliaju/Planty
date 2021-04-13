@@ -25,7 +25,10 @@ class _AllPlantListState extends State<AllPlantList> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PlantProfile()),
+                MaterialPageRoute(
+                    builder: (context) => PlantProfile(
+                          plant: plants[index],
+                        )),
               );
             },
             child: AllPlantTile(

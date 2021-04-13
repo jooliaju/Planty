@@ -30,6 +30,7 @@ dependencies:
   firebase_crashlytics: ^0.4.0+1
   firebase_storage: ^7.0.0
   path: ^1.7.0
+  intl: ^0.16.1
 
 
 

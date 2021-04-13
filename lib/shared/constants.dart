@@ -9,4 +9,6 @@ HexColor kBrown = HexColor("#DC6D40");
 HexColor kGreyBlue = HexColor("#566C71");
 HexColor kGreen = HexColor("2C6975");
 
+HexColor kLightGreen = HexColor("68B2A0");
+
 const double kDefaultPadding = 20.0;
