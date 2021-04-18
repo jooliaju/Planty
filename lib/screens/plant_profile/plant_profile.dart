@@ -185,6 +185,26 @@ class _PlantProfileState extends State<PlantProfile> {
                                 )
                               ],
                             ),
+                            SizedBox(height: 15),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                                                          child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text('Information', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
+                                  SizedBox(height: 20,),
+                                  Text(
+                                      "widget.plant.bio",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14
+                                      ),
+                                    
+                                      )
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
