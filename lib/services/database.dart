@@ -31,13 +31,13 @@ class DatabaseService {
     return await plantCollection.doc(uid).set({'name': name, 'uid': uid});
   }
 
-  Future addPlant(String name, String bio, String type, int waterTime,
+  Future addPlant(String name, String bio, String type, DateTime nextWaterDate,
       String imageUrl) async {
     return await plantCollection.add({
       'name': name,
       'type': type,
       'bio': bio,
-      'waterTime': waterTime,
+      'nextWaterDate': nextWaterDate,
       'imageUrl': imageUrl,
       'uid': uid
     });
@@ -49,8 +49,8 @@ class DatabaseService {
       return Plant(
         name: doc.data()['name'] ?? "",
         bio: doc.data()['bio'] ?? "",
+        nextWaterDate: doc.data()['nextWaterDate'].toDate() ?? null,
         type: doc.data()['type'] ?? "",
-        waterTime: doc.data()['waterTime'] ?? 0,
         imageUrl: doc.data()['imageUrl'] ?? "",
       );
     }).toList();

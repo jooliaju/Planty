@@ -65,7 +65,7 @@ class PlantTileNew extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Text("${plant.waterTime} days",
+                      Text("x days",
                           style: TextStyle(
                               fontSize: 14,
                               color: kGreen,

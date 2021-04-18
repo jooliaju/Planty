@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -19,6 +20,9 @@ class _PlantProfileState extends State<PlantProfile> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime _daysUntilWater = widget.plant.nextWaterDate;
+    print(_daysUntilWater.toString());
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kBackground,
@@ -109,12 +113,13 @@ class _PlantProfileState extends State<PlantProfile> {
                                         Image.asset("assets/icons/water.png"),
                                         SizedBox(width: 10),
                                         Text(
-                                          "${widget.plant.waterTime} Days",
+                                          "x Days",
                                           style: TextStyle(
                                               fontSize: 16,
                                               color: Colors.white),
                                         ),
                                       ],
+                                    ),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -174,7 +179,8 @@ class _PlantProfileState extends State<PlantProfile> {
                                       SizedBox(
                                         height: 20,
                                       ),
-                                      Text("${widget.plant.waterTime} \ndays",
+                                      Text(
+                                         "lol",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 22,
@@ -188,27 +194,32 @@ class _PlantProfileState extends State<PlantProfile> {
                             SizedBox(height: 15),
                             Align(
                               alignment: Alignment.centerLeft,
-                                                          child: Column(
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('Information', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
-                                  SizedBox(height: 20,),
                                   Text(
-                                      "widget.plant.bio",
-                                      style: TextStyle(
+                                    'Information',
+                                    style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 14
-                                      ),
-                                    
-                                      )
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "widget.plant.bio",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14),
+                                  )
                                 ],
                               ),
                             )
                           ],
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               )

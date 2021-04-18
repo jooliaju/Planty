@@ -30,6 +30,7 @@ class _AddPlantState extends State<AddPlant> {
   String imageUrl;
   File _image;
   final picker = ImagePicker();
+  DateTime daysUntilWater;
 
   TextStyle style =
       TextStyle(fontSize: 20, color: kGreyBlue, fontWeight: FontWeight.bold);
@@ -73,6 +74,10 @@ class _AddPlantState extends State<AddPlant> {
     setState(() {
       imageUrl = downloadUrl;
     });
+  }
+
+  setWaterDate(int days) {
+    daysUntilWater = DateTime.now().add(Duration(days: days));
   }
 
   @override
@@ -263,8 +268,11 @@ class _AddPlantState extends State<AddPlant> {
                     await uploadImage(_image);
                     if (_formKey.currentState.validate()) {
                       print("this is the image url: ");
+
+                      setWaterDate(_waterTime);
+
                       await DatabaseService(uid: user.uid)
-                          .addPlant(_name, _bio, _type, _waterTime, imageUrl);
+                          .addPlant(_name, _bio, _type, daysUntilWater, imageUrl);
                       Loading();
                     }
 
