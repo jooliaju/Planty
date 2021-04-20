@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/models/user.dart';
 
 class UserTile extends StatelessWidget {

@@ -22,6 +22,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
     UserModel user = Provider.of<UserModel>(context);
     Size size = MediaQuery.of(context).size;
 
+
     return StreamProvider<List<Plant>>.value(
       value: DatabaseService(uid: user.uid).plants,
       child: Scaffold(

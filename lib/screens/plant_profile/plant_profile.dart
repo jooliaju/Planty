@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/shared/constants.dart';
@@ -20,8 +19,11 @@ class _PlantProfileState extends State<PlantProfile> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime _daysUntilWater = widget.plant.nextWaterDate;
-    print(_daysUntilWater.toString());
+    int _daysUntilWater = widget.plant.nextWaterDate.difference(DateTime.now()).inDays + 1;
+
+
+
+    print(widget.plant.waterTime.toString());
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -113,14 +115,14 @@ class _PlantProfileState extends State<PlantProfile> {
                                         Image.asset("assets/icons/water.png"),
                                         SizedBox(width: 10),
                                         Text(
-                                          "x Days",
+                                          widget.plant.waterTime.toString() + " Days",
                                           style: TextStyle(
                                               fontSize: 16,
                                               color: Colors.white),
                                         ),
                                       ],
                                     ),
-                                    ),
+
                                     SizedBox(
                                       height: 10,
                                     ),
@@ -180,7 +182,7 @@ class _PlantProfileState extends State<PlantProfile> {
                                         height: 20,
                                       ),
                                       Text(
-                                         "lol",
+                                          _daysUntilWater.toString(),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 22,

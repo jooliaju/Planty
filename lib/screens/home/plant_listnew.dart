@@ -3,6 +3,7 @@ import 'package:planty_app/models/plant_model.dart';
 
 import 'package:planty_app/old/plant_tile.dart';
 import 'package:planty_app/screens/home/plant_tilenew.dart';
+import 'package:planty_app/screens/plant_profile/plant_profile.dart';
 import 'package:planty_app/shared/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class _PlantListNewState extends State<PlantListNew> {
     final plants = Provider.of<List<Plant>>(context) ?? [];
     print(plants.length);
 
+
     return Container(
       height: 270,
       child: ListView.builder(
@@ -24,7 +26,18 @@ class _PlantListNewState extends State<PlantListNew> {
         scrollDirection: Axis.horizontal,
         itemCount: plants.length,
         itemBuilder: (context, index) {
-          return PlantTileNew(plant: plants[index]);
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PlantProfile(
+                      plant: plants[index],
+                    )),
+              );
+            },
+
+              child: PlantTileNew(plant: plants[index]));
         },
       ),
     );

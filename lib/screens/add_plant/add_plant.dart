@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:planty_app/models/user.dart';
+import 'package:planty_app/screens/idCam/idCam_screen.dart';
 import 'package:planty_app/services/database.dart';
 import 'package:planty_app/shared/constants.dart';
 import 'package:planty_app/shared/loading.dart';
@@ -167,6 +168,13 @@ class _AddPlantState extends State<AddPlant> {
                     GestureDetector(
                       onTap: () {
                         ///add in plant identifier stuff
+                        Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => idCamScreen(
+                      
+                    )),
+              );
                       },
                       child: RichText(
                           text: TextSpan(
@@ -272,9 +280,9 @@ class _AddPlantState extends State<AddPlant> {
                       setWaterDate(_waterTime);
 
                       await DatabaseService(uid: user.uid)
-                          .addPlant(_name, _bio, _type, daysUntilWater, imageUrl);
-                      Loading();
+                          .addPlant(_name, _bio, _type, daysUntilWater, _waterTime, imageUrl);
                     }
+                      Loading();
 
                     Navigator.pop(context);
                   },

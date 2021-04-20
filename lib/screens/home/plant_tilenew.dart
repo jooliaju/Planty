@@ -10,6 +10,8 @@ class PlantTileNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int _daysUntilWater = plant.nextWaterDate.difference(DateTime.now()).inDays + 1;
+
     return Container(
         margin: EdgeInsets.only(left: kDefaultPadding),
         child: Container(
@@ -65,7 +67,7 @@ class PlantTileNew extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Text("x days",
+                      Text("$_daysUntilWater days",
                           style: TextStyle(
                               fontSize: 14,
                               color: kGreen,

@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:planty_app/models/user.dart';
-import 'package:planty_app/services/database.dart';
-import 'package:planty_app/shared/loading.dart';
+
 import 'package:provider/provider.dart';
 
 class AddPlant extends StatefulWidget {
