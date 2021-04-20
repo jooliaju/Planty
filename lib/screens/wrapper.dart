@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:planty_app/models/user.dart';
-import 'package:planty_app/screens/auth/signIn.dart';
+import 'package:planty_app/screens/auth/sign_in.dart';
 import 'package:planty_app/old/home.dart';
+import 'package:planty_app/screens/auth/welcome.dart';
 import 'package:planty_app/screens/home/home_new.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class Wrapper extends StatelessWidget {
     //returns home or auth page
 
     if (user == null) {
-      return SignInPage();
+      return WelcomePage();
     } else {
 
       ///temp!

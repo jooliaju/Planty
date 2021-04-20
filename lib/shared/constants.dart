@@ -8,6 +8,7 @@ HexColor kBlue = HexColor("#B9CEFA");
 HexColor kBrown = HexColor("#DC6D40");
 HexColor kGreyBlue = HexColor("#566C71");
 HexColor kGreen = HexColor("2C6975");
+HexColor kDeepBlue = HexColor("4A47FF");
 
 HexColor kLightGreen = HexColor("68B2A0");
 

@@ -240,8 +240,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
               ListTile(
                 title: Text('Find Plant Id'),
                 onTap:(){
-                     Navigator.pop(context);
-
+                  Navigator.pop(context); //closes drawer after we navigate to new page
 
                    Navigator.push(
                 context,
