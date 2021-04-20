@@ -1,11 +1,11 @@
 import "package:flutter/material.dart";
 import 'package:planty_app/screens/all_plants/all_plants.dart';
+import 'package:planty_app/screens/idCam/idCam_screen.dart';
 import 'package:planty_app/shared/constants.dart';
 import 'package:planty_app/models/plant_model.dart';
 import 'package:planty_app/models/user.dart';
-import 'package:planty_app/screens/add_plant/add_plant.dart';
 import 'package:planty_app/screens/home/plant_listnew.dart';
-
+import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:planty_app/services/auth.dart';
 import 'package:planty_app/services/database.dart';
 import 'package:provider/provider.dart';
@@ -16,16 +16,23 @@ class HomeScreenNew extends StatefulWidget {
 }
 
 class _HomeScreenNewState extends State<HomeScreenNew> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     UserModel user = Provider.of<UserModel>(context);
     Size size = MediaQuery.of(context).size;
 
-
     return StreamProvider<List<Plant>>.value(
       value: DatabaseService(uid: user.uid).plants,
       child: Scaffold(
+          key: _scaffoldKey,
+
+
+          //Side Drawer
+          drawer:  buildDrawer(context),
+
           backgroundColor: kBackground,
           body: Container(
             child: Column(
@@ -43,9 +50,14 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                           child: Column(children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(top: 30),
-                              child: Image.asset(
-                                "assets/icons/side_bar.png",
-                                scale: 3,
+                              child: GestureDetector(
+                                onTap: () {
+                                  _scaffoldKey.currentState.openDrawer();
+                                },
+                                child: Image.asset(
+                                  "assets/icons/side_bar.png",
+                                  scale: 3,
+                                ),
                               ),
                             ),
                           ]),
@@ -63,6 +75,8 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                 child: GestureDetector(
                                   onTap: () {
                                     print("you need to add a profile page");
+
+                                    print("tappedssss");
                                   },
                                   child: CircleAvatar(
                                     backgroundColor: Colors.white,
@@ -204,5 +218,53 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
             ),
           )),
     );
+  }
+
+  Drawer buildDrawer(BuildContext context) {
+    return Drawer(
+          child:  ListView(
+            padding: EdgeInsets.zero,
+            children:  <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text(
+                  'Fill this in',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text('Find Plant Id'),
+                onTap:(){
+                     Navigator.pop(context);
+
+
+                   Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => idCamScreen(
+                      
+                    )),
+              );
+                                 
+                },
+              ),
+              ListTile(
+                title: Text('Profile'),
+                onTap: (){},
+
+              ),
+              ListTile(
+                title: Text('Settings'),
+                onTap: (){},
+
+              ),
+            ],
+          ),
+        );
   }
 }

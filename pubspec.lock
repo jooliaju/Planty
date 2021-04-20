@@ -202,6 +202,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_inner_drawer:
+    dependency: "direct main"
+    description:
+      name: flutter_inner_drawer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.8"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -233,6 +240,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_zoom_drawer:
+    dependency: "direct main"
+    description:
+      name: flutter_zoom_drawer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.5"
   hexcolor:
     dependency: "direct main"
     description:

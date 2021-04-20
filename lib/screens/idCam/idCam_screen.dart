@@ -78,7 +78,7 @@ class _idCamScreenState extends State<idCamScreen> {
                 label: Text("Album"),
               ),
               RaisedButton.icon(
-                  onPressed: () async{
+                  onPressed: () {
                     _image == null
                         ? print("no photo available to send a request")
                         : setState(() async {
@@ -86,18 +86,17 @@ class _idCamScreenState extends State<idCamScreen> {
 
                             plantId = await PlantIdService().upload(
                                 imageFile: fileName, imagePath: _image.path);
-                          });
+                            print(plantId.commonName);
 
-                      String fileName = _image.path.split("/").last;
+                            print(plantId.scientificName);
 
-                      plantId = await PlantIdService().upload(
-                                imageFile: fileName, imagePath: _image.path);
-
-                      Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => plantGuess(plantId: plantId)),
+                                  builder: (context) =>
+                                      plantGuess(plantId: plantId)),
                             );
+                          });
                   },
                   icon: Icon(Icons.arrow_forward_ios),
                   label: Text("next"))
