@@ -3,8 +3,12 @@ import 'package:planty_app/animations/FadeAnimation.dart';
 import 'package:planty_app/screens/auth/login.dart';
 import 'package:planty_app/services/auth.dart';
 import 'package:planty_app/shared/constants.dart';
+import 'package:planty_app/shared/loading.dart';
 
 class SignupPage extends StatefulWidget {
+
+    final Function toggleView;
+  SignupPage({ this.toggleView });
   @override
   _SignupPageState createState() => _SignupPageState();
 }
@@ -131,7 +135,7 @@ final signUpButton = MaterialButton(
 
 
     
-    return Scaffold(
+    return loading ? Loading(): Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -146,62 +150,64 @@ final signUpButton = MaterialButton(
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          height: MediaQuery.of(context).size.height - 50,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  FadeAnimation(1, Text("Sign up", style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold
-                  ),)),
-                  SizedBox(height: 20,),
-                  FadeAnimation(1.2, Text("Create an account, It's free", style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey[700]
-                  ),)),
-                ],
-              ),
-              Column(
-                children: <Widget>[
-                  FadeAnimation(1.2, emailField),
-                  FadeAnimation(1.3, passwordField),
-                  FadeAnimation(1.4, makeInput(label: "Confirm Password", obscureText: true)),
-                ],
-              ),
-              FadeAnimation(1.5, Container(
-                padding: EdgeInsets.only(top: 3, left: 3),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border(
-                    bottom: BorderSide(color: Colors.black),
-                    top: BorderSide(color: Colors.black),
-                    left: BorderSide(color: Colors.black),
-                    right: BorderSide(color: Colors.black),
-                  )
+        child: Form(key: _formKey,
+                  child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            height: MediaQuery.of(context).size.height - 50,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    FadeAnimation(1, Text("Sign up", style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold
+                    ),)),
+                    SizedBox(height: 20,),
+                    FadeAnimation(1.2, Text("Create an account, It's free", style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey[700]
+                    ),)),
+                  ],
                 ),
-                child: signUpButton
-              )),
-              FadeAnimation(1.6, Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Already have an account?"),
-                  GestureDetector(
-                    onTap: (){
-                                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-
-                    },
-                                      child: Text(" Login", style: TextStyle(
-                      fontWeight: FontWeight.w600, fontSize: 18
-                    ),),
+                Column(
+                  children: <Widget>[
+                    FadeAnimation(1.2, emailField),
+                    FadeAnimation(1.3, passwordField),
+                    // FadeAnimation(1.4, makeInput(label: "Confirm Password", obscureText: true)),
+                  ],
+                ),
+                FadeAnimation(1.5, Container(
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black),
+                      top: BorderSide(color: Colors.black),
+                      left: BorderSide(color: Colors.black),
+                      right: BorderSide(color: Colors.black),
+                    )
                   ),
-                ],
-              )),
-            ],
+                  child: signUpButton
+                )),
+                FadeAnimation(1.6, Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("Already have an account?"),
+                    GestureDetector(
+                      onTap: (){
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+
+                      },
+                                        child: Text(" Login", style: TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 18
+                      ),),
+                    ),
+                  ],
+                )),
+              ],
+            ),
           ),
         ),
       ),

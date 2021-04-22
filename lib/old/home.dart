@@ -41,12 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     UserList(),
                     RaisedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => UpdateUser()),
-                        );
-                      },
+                      // onPressed: () {
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(builder: (context) => UpdateUser()),
+                      //   );
+                      // },
                       child: Text(
                         'Update User',
                         style: TextStyle(color: Colors.white),

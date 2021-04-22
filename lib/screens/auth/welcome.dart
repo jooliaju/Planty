@@ -7,7 +7,16 @@ import 'package:planty_app/screens/auth/sign_up.dart';
 import 'package:planty_app/shared/constants.dart';
 
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
+    final Function toggleView;
+  WelcomePage({ this.toggleView });
+  @override
+  _WelcomePageState createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

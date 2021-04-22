@@ -9,6 +9,10 @@ import 'package:planty_app/shared/constants.dart';
 import 'package:planty_app/shared/loading.dart';
 
 class LoginPage extends StatefulWidget {
+
+  final Function toggleView;
+  LoginPage({ this.toggleView });
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -127,40 +131,6 @@ class _LoginPageState extends State<LoginPage> {
     //   ),
     // );
 
-    final signUpButton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Colors.deepOrange,
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () async {
-          //add logging stuff too
-
-          if (_formKey.currentState.validate()) {
-            setState(() {
-              loading = true;
-            });
-
-            print("email entered: " + email);
-            print("password entered: " + password);
-
-            dynamic result =
-                await authService.registerWithEmailAndPassword(email, password);
-            if (result == null) {
-              setState(() {
-                error = "Please supply a valid email";
-                loading = false;
-              });
-            }
-          }
-        },
-        child: Text("Sign up",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
-      ),
-    );
 
     final loginButton = MaterialButton(
       minWidth: double.infinity,
@@ -194,9 +164,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    return loading
-        ? Loading()
-        : Scaffold(
+    return loading ? Loading() :Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -306,15 +274,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  FadeAnimation(
-                      1.2,
-                      Container(
-                        height: MediaQuery.of(context).size.height / 3,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/background.png'),
-                                fit: BoxFit.cover)),
-                      ))
+                  // FadeAnimation(
+                  //     1.2,
+                  //     Container(
+                  //       height: MediaQuery.of(context).size.height / 3,
+                  //       decoration: BoxDecoration(
+                  //           image: DecorationImage(
+                  //               image: AssetImage('assets/background.png'),
+                  //               fit: BoxFit.cover)),
+                  //     ))
                 ],
               ),
             ),
