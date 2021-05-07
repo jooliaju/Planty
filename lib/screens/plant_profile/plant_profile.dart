@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:planty_app/models/plant_model.dart';
+import 'package:planty_app/screens/timeline/timeline.dart';
 import 'package:planty_app/shared/constants.dart';
 import 'package:intl/intl.dart';
 
@@ -30,9 +31,11 @@ class _PlantProfileState extends State<PlantProfile> {
       backgroundColor: kBackground,
       body: Column(
         children: [
+          
           Stack(
             overflow: Overflow.visible,
             children: [
+             
               Container(
                 height: size.height * .55,
                 decoration: BoxDecoration(
@@ -52,6 +55,29 @@ class _PlantProfileState extends State<PlantProfile> {
                       : Image.file(_image, fit: BoxFit.cover),
                 ),
               ),
+               Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 45),
+                 child: Row(
+                  
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: [
+                  GestureDetector(
+                    
+                    onTap: () async {
+                Navigator.pop(context);
+              },
+                    child: Image.asset("assets/icons/back_arrow_3.png", scale:3)),
+                  GestureDetector(child: Image.asset("assets/icons/timeline_button.png", scale:3,),
+                   onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Timeline()),
+                            );
+                          },
+                  )
+              ]),
+               ),
               Positioned(
                 top: size.height * .48,
                 child: Column(

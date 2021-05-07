@@ -5,8 +5,10 @@ class Plant {
   final DateTime nextWaterDate;
   final int waterTime;
   final String imageUrl;
+    final String plantId;
 
-  Plant(
+
+  Plant(this.plantId, 
       {this.name,
       this.bio,
       this.imageUrl,

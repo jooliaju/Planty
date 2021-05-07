@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:planty_app/models/plant_model.dart';
+import 'package:planty_app/models/timeline_model.dart';
 import 'package:planty_app/models/user.dart';
 import 'package:provider/provider.dart';
 
 class DatabaseService {
   final String uid;
+  final String plantId;
 
-  DatabaseService({this.uid});
+  DatabaseService({this.uid,this.plantId});
 
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
@@ -15,6 +17,9 @@ class DatabaseService {
   ///figure out how to get the uid of each plant doc
   final CollectionReference plantCollection =
       FirebaseFirestore.instance.collection('plants');
+
+  final CollectionReference timelineCollection =
+      FirebaseFirestore.instance.collection('timelines');
 
   Future updateUserData(
       String username, String bio, int waterTime, email) async {
@@ -31,14 +36,25 @@ class DatabaseService {
     return await plantCollection.doc(uid).set({'name': name, 'uid': uid});
   }
 
-  Future addPlant(String name, String bio, String type, DateTime nextWaterDate, int waterTime,
-      String imageUrl) async {
+  Future addPlant(String name, String bio, String type, DateTime nextWaterDate,
+      int waterTime, String imageUrl) async {
     return await plantCollection.add({
       'name': name,
       'type': type,
       'bio': bio,
       'nextWaterDate': nextWaterDate,
-      'waterTime' : waterTime,
+      'waterTime': waterTime,
+      'imageUrl': imageUrl,
+      'uid': uid
+    });
+  }
+
+  Future addTimeline(
+    {DateTime updatedAt,
+    String imageUrl}
+  ) async {
+    return await timelineCollection.add({
+      'plantId': plantId,
       'imageUrl': imageUrl,
       'uid': uid
     });
@@ -48,15 +64,18 @@ class DatabaseService {
   List<Plant> _plantListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Plant(
+        plantId: doc.data()['plantId'] ?? ''
         name: doc.data()['name'] ?? "",
         bio: doc.data()['bio'] ?? "",
         nextWaterDate: doc.data()['nextWaterDate'].toDate() ?? null,
-        waterTime: doc.data()['waterTime']?? 1,
+        waterTime: doc.data()['waterTime'] ?? 1,
         type: doc.data()['type'] ?? "",
         imageUrl: doc.data()['imageUrl'] ?? "",
       );
     }).toList();
   }
+
+  //userData from snapshot
 
   List<UserInfo> _userFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
@@ -65,6 +84,18 @@ class DatabaseService {
         uid: doc.data()['uid'] ?? "",
         bio: doc.data()['bio'] ?? "",
         waterTime: doc.data()['waterTime'] ?? 0,
+      );
+    }).toList();
+  }
+
+
+    //timeline data from snapshot
+
+  List<Timeline> _timelineFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return Timeline(
+        updatedAt: doc.data()['updatedAt'].toDate() ?? null,
+        imageUrl: doc.data()['imageUrl'] ?? "",
       );
     }).toList();
   }
@@ -80,18 +111,27 @@ class DatabaseService {
     );
   }
 
-//get plants stream
+//get users stream
 
   Stream<List<UserInfo>> get users {
     final Query currUserQuery = userCollection.where("uid", isEqualTo: uid);
     return currUserQuery.snapshots().map(_userFromSnapshot); //returns a stream
   }
 
+//get plants stream
   Stream<List<Plant>> get plants {
     final Query currUserPlants = plantCollection.where("uid", isEqualTo: uid);
     return currUserPlants
         .snapshots()
         .map(_plantListFromSnapshot); //returns a stream
+  }
+
+
+    Stream<List<Timeline>> get timelines {
+    final Query currUserPlants = timelineCollection.where("plantId", isEqualTo: plantId);
+    return currUserPlants
+        .snapshots()
+        .map(_timelineFromSnapshot); //returns a stream
   }
 
   //get user doc stream
