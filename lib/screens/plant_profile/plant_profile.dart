@@ -72,7 +72,7 @@ class _PlantProfileState extends State<PlantProfile> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Timeline()),
+                                  builder: (context) => Timeline(plant: widget.plant)),
                             );
                           },
                   )

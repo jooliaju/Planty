@@ -1,6 +1,7 @@
-class Timeline {
+class TimelineModel {
   final DateTime updatedAt;
   final String imageUrl;
+  final String plantId;
 
-  Timeline({this.updatedAt, this.imageUrl});
+  TimelineModel({this.updatedAt, this.imageUrl, this.plantId});
 }

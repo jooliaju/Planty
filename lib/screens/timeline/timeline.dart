@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:planty_app/models/plant_model.dart';
+import 'package:planty_app/models/timeline_model.dart';
 import 'package:planty_app/models/user.dart';
+import 'package:planty_app/screens/timeline/entry_list.dart';
 import 'package:planty_app/services/database.dart';
 import 'package:planty_app/shared/constants.dart';
 import 'dart:io';
@@ -10,7 +13,10 @@ import 'package:path/path.dart' as path;
 import 'package:provider/provider.dart';
 
 class Timeline extends StatefulWidget {
+  Plant plant;
+  Timeline({this.plant});
   @override
+  
   _TimelineState createState() => _TimelineState();
 }
 
@@ -122,7 +128,7 @@ class _TimelineState extends State<Timeline> {
               onPressed: () async{
                 await uploadImage(_image);
 
-                 await DatabaseService(uid: uid)
+                 await DatabaseService(uid: uid, plantId: widget.plant.plantId)
                           .addTimeline(updatedAt: DateTime.now(), imageUrl: imageUrl);
               },
             ),
@@ -138,7 +144,9 @@ class _TimelineState extends State<Timeline> {
 
     Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
+    return StreamProvider<List<TimelineModel>>.value(
+      value: DatabaseService(plantId: widget.plant.plantId).timelines,
+      child: Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -180,7 +188,7 @@ class _TimelineState extends State<Timeline> {
                           Row(
                             children: [
                               Text(
-                                "Dao Bonsai Yang",
+                                widget.plant.name,
                                 style: TextStyle(
                                     fontSize: 24, fontWeight: FontWeight.w300),
                               ),
@@ -217,41 +225,9 @@ class _TimelineState extends State<Timeline> {
               ),
             ],
           ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: 3,
-              padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 100,
-                  height: 200,
-                  margin: EdgeInsets.only(bottom: 50),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey[200],
-                        blurRadius: 10,
-                        spreadRadius: 5,
-                        offset: Offset(5, 5),
-                      )
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Spacer(),
-                      Container(width: 150, height: 200, color: Colors.black)
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
+          EntryList()
         ],
       ),
-    );
+    ));
   }
 }

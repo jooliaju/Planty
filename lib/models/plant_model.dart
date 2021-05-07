@@ -8,8 +8,8 @@ class Plant {
     final String plantId;
 
 
-  Plant(this.plantId, 
-      {this.name,
+  Plant({this.plantId, 
+      this.name,
       this.bio,
       this.imageUrl,
       this.type,

@@ -20,17 +20,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final auth = FirebaseAuth.instance;
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
   final AuthService authService = AuthService();
-
   final _formKey = GlobalKey<FormState>();
-
   bool loading = false;
-
   String email = '';
-
   String password = '';
-
   String error = '';
 
   @override
