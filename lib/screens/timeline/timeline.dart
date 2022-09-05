@@ -109,7 +109,9 @@ class _TimelineState extends State<Timeline> {
   }
 
   Future _showImage(String uid) {
-    // flutter defined function
+
+    
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -123,9 +125,20 @@ class _TimelineState extends State<Timeline> {
                 : Container(),
           ),
           actions: <Widget>[
+
+            FlatButton(
+              child: new Text("Cancel"),
+              onPressed: () {
+                               Navigator.of(context).pop();
+
+              },
+            ),
+
             FlatButton(
               child: new Text("Post"),
               onPressed: () async{
+
+
                 await uploadImage(_image);
 
                  await DatabaseService(uid: uid, plantId: widget.plant.plantId)
@@ -136,6 +149,11 @@ class _TimelineState extends State<Timeline> {
         );
       },
     );
+
+    if (_image == null ){
+                      Navigator.of(context).pop();
+
+    }
   }
 
   @override
@@ -212,9 +230,21 @@ class _TimelineState extends State<Timeline> {
                                     _image = null;
                                   });
                                 },
-                                child: Image.asset(
-                                  'assets/icons/add.png',
-                                  scale: 3.3,
+                                child: Container(
+                                  child: Image.asset(
+                                    'assets/icons/add.png',
+                                    scale: 3.3,
+                                    
+                                  ),
+                                   decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(5, 5),
+                            blurRadius: 18,
+                            color: kLightGreen.withOpacity(0.5))
+                      ]),
                                 ))
                           ]),
                         ],
@@ -225,6 +255,7 @@ class _TimelineState extends State<Timeline> {
               ),
             ],
           ),
+
           EntryList()
         ],
       ),

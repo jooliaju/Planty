@@ -87,7 +87,7 @@ class _AddPlantState extends State<AddPlant> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
+      body: ListView(
         children: <Widget>[
           GestureDetector(
             onTap: takeImage,

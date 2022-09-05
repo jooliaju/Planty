@@ -20,7 +20,7 @@ class Wrapper extends StatelessWidget {
       return Authenticate();
     } else {
 
-      return HomeScreenNew();
+      return WelcomePage();
       // return HomeScreen();
 
     }

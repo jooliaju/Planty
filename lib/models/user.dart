@@ -1,30 +1,33 @@
 class UserModel {
 
   final String uid;
+    final String username;
+  final String email;
+    final String avatarUrl;
 
-  UserModel({ this.uid });
+
+  UserModel({this.username, this.email, this.uid, this.avatarUrl});
 
 }
 
 class UserData
 {
-  final String uid;
-  final String name;
-  final String bio;
-  final int waterTime;
+  final String username;
   final String email;
+  final String uid;
+  final String avatarUrl;
 
-  UserData({this.uid, this.bio, this.name, this.waterTime, this.email});
+  UserData({this.username, this.email, this.uid, this.avatarUrl});
+
 }
 
 class UserInfo {
-  final String name;
-  final String bio;
+  final String username;
   final String email;
   final String uid;
-  final int waterTime;
+  final String avatarUrl;
 
-  UserInfo({this.name, this.bio, this.waterTime, this.email, this.uid});
+  UserInfo({this.username, this.email, this.uid, this.avatarUrl});
 
 
 }

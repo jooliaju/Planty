@@ -24,7 +24,7 @@ class _idCamScreenState extends State<idCamScreen> {
         source: ImageSource
             .camera); //make a function for pick form gallery and one for camera
 
-    setState(() async {
+    setState(()  {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
       } else {

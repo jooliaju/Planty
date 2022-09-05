@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:planty_app/screens/all_plants/all_plants.dart';
+import 'package:planty_app/screens/auth/welcome.dart';
+import 'package:planty_app/screens/home/greeting.dart';
+import 'package:planty_app/screens/home/profilePic.dart';
 import 'package:planty_app/screens/idCam/idCam_screen.dart';
 import 'package:planty_app/shared/constants.dart';
 import 'package:planty_app/models/plant_model.dart';
@@ -67,25 +70,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                             child: Image.asset("assets/images/profile_pic.png",
                                 scale: 3.5),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(40),
-                            child: Container(
-                                height: 60,
-                                width: 60,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    print("you need to add a profile page");
-
-                                    print("tappedssss");
-                                  },
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    child: Image.asset(
-                                        "assets/images/human.png",
-                                        fit: BoxFit.contain),
-                                  ),
-                                )),
-                          ),
+                          ProfilePic()
                         ]),
                       ],
                     ),
@@ -94,31 +79,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                     margin: EdgeInsets.only(left: kDefaultPadding),
                     child: Padding(
                       padding: EdgeInsets.only(top: 130),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                              text: TextSpan(
-                                  text: "Hey ",
-                                  style: TextStyle(
-                                      color: kDefaultText, fontSize: 26),
-                                  children: <TextSpan>[
-                                TextSpan(
-                                    text: "Malakai",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold))
-                              ])),
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Text(
-                            "Let’s keep your plants healthy!",
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          )
-                        ],
-                      ),
+                      child: Greeting(),
                     ),
                   ),
                 ]),
@@ -165,6 +126,15 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                 FlatButton(
                   onPressed: () {
                     _auth.signOut();
+
+                    Navigator.pushAndRemoveUntil<dynamic>(
+        context,
+        MaterialPageRoute<dynamic>(
+          builder: (BuildContext context) => WelcomePage(),
+        ),
+        (route) => false,//if you want to disable back feature set to false
+);
+
                   },
                   child: Text("sign out temp"),
                 ),

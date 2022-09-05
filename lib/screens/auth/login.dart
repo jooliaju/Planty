@@ -2,8 +2,12 @@ import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:planty_app/animations/FadeAnimation.dart';
+import 'package:planty_app/old/home.dart';
 import 'package:planty_app/screens/auth/sign_up.dart';
+import 'package:planty_app/screens/auth/welcome.dart';
+import 'package:planty_app/screens/home/home_new.dart';
 import 'package:planty_app/services/auth.dart';
 import 'package:planty_app/shared/constants.dart';
 import 'package:planty_app/shared/loading.dart';
@@ -145,6 +149,14 @@ class _LoginPageState extends State<LoginPage> {
               loading = false;
               error = "Please supply a valid email";
             });
+          }else { 
+            Navigator.pushAndRemoveUntil<dynamic>(
+        context,
+        MaterialPageRoute<dynamic>(
+          builder: (BuildContext context) => HomeScreenNew(),
+        ),
+        (route) => false,//if you want to disable back feature set to false
+);
           }
         }
       },
@@ -158,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    return loading ? Loading() :Scaffold(
+    return loading ? Loading() : Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -167,7 +179,8 @@ class _LoginPageState extends State<LoginPage> {
               backgroundColor: Colors.white,
               leading: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(context, PageTransition(type: PageTransitionType.leftToRight, child: WelcomePage()));
+
                 },
                 icon: Icon(
                   Icons.arrow_back_ios,

@@ -31,7 +31,7 @@ dependencies:
   firebase_storage: ^7.0.0
   path: ^1.7.0
   intl: ^0.16.1
-
+  page_transition: ^1.1.7+6
   hexcolor: ^1.0.6
   simple_animations: ^2.5.1
 

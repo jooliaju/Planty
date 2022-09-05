@@ -18,10 +18,10 @@ class _EntryListState extends State<EntryList> {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         itemCount: entries.length,
-        padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        padding: EdgeInsets.symmetric(horizontal: 30),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return EntryTile(timelineEntry: entries[index]);
+          return EntryTile(timelineEntry: entries[index], entryIndex: index, entryLength: entries.length);
         },
       ),
     );

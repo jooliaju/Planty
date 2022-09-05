@@ -17,8 +17,8 @@ class UserTile extends StatelessWidget {
             radius: 30,
             backgroundColor: Colors.green
           ),
-          title: Text(user.name),
-          subtitle: Text(user.bio),
+          title: Text(user.username),
+          subtitle: Text(user.uid),
         ),
       ),
 

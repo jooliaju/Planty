@@ -24,13 +24,12 @@ class DatabaseService {
 
 
   Future updateUserData(
-      String username, String bio, int waterTime, email) async {
+      String username, String avatarUrl) async {
     return await userCollection.doc(uid).set({
-      'name': username,
-      'bio': bio,
-      'waterTime': waterTime,
+      'username': username,
+      'avatarUrl' : avatarUrl,
       'uid': uid,
-      'email': email ?? ''
+
     });
   }
 
@@ -81,10 +80,10 @@ class DatabaseService {
   List<UserInfo> _userFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return UserInfo(
-        name: doc.data()['name'] ?? "",
+        username: doc.data()['username'] ?? "",
         uid: doc.data()['uid'] ?? "",
-        bio: doc.data()['bio'] ?? "",
-        waterTime: doc.data()['waterTime'] ?? 0,
+        email: doc.data()['email'] ?? "",
+        avatarUrl: doc.data()['avatarUrl'] ?? 0,
       );
     }).toList();
   }
@@ -104,12 +103,16 @@ class DatabaseService {
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
       uid: snapshot.data()['uid'],
-      name: snapshot.data()['name'],
-      bio: snapshot.data()['bio'],
-      waterTime: snapshot.data()['waterTime'],
+      username: snapshot.data()['username'],
       email: snapshot.data()['email'],
+            avatarUrl: snapshot.data()['avatarUrl'],
+
     );
   }
+
+
+
+  
 
 //get users stream
 

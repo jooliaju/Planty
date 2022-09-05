@@ -51,13 +51,18 @@ class AuthService {
 
       //create a new doc for the user with the uID
       print(user.uid);
-      await DatabaseService(uid: user.uid).updateUserData("DBY", "i like bonsais", 1, email);
 
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
       return null;
     }
+  }
+
+  Future createProfile(String username, String avatarUrl, String uid) async{
+    
+    await DatabaseService(uid: uid).updateUserData("DBY", "i like bonsais");
+
   }
 
   // sign in with email and password

@@ -28,7 +28,7 @@ class _AddPlantState extends State<AddPlant> {
         appBar: AppBar(
           title: Text("temp form"),
         ),
-        body: Column(
+        body: ListView(
           children: <Widget>[
             TextFormField(
               decoration: InputDecoration(
