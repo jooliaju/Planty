@@ -1,6 +1,8 @@
 # planty_app
 
 A new Flutter application.
+Link to flower prediction API
+https://github.com/jooliaju/Flower-Identification-API
 
 ## Getting Started
 
